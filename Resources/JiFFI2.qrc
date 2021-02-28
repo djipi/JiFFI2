@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="JiFFI2">
+    <file>JiFFI2_about_Logo.jpg</file>
+  </qresource>
+</RCC>
