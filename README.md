@@ -10,5 +10,15 @@ Jaguar Server (v2 and v3)<br>
 ROM<br>
 ELF
 
+## Features
+Windows 64 bits.
+Conversion between one to all supported formats.
+Command line and GUI support.
+6MB pad rom support.
+jcp and jcp2 executable detection.
+lo_inp executable detection.
+Debug information removal for COFF and ELF format.
+Configuration file in XML format.
+
 ### Revision
-This version has been converted to C/C++ from JiFFI v1.43 written in Basic.
+This version has been converted to C/C++ from JiFFI v1.43 written in GFA Basic.
