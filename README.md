@@ -11,13 +11,13 @@ ROM<br>
 ELF
 
 ## Features
-Windows 64 bits.
-Conversion between one to all supported formats.
-Command line and GUI support.
-6MB pad rom support.
-jcp and jcp2 executable detection.
-lo_inp executable detection.
-Debug information removal for COFF and ELF format.
+Windows 64 bits.<br>
+Conversion between one to all supported formats.<br>
+Command line and GUI support.<br>
+6MB pad rom support.<br>
+jcp and jcp2 executable detection.<br>
+lo_inp executable detection.<br>
+Debug information removal for COFF and ELF format.<br>
 Configuration file in XML format.
 
 ### Revision
