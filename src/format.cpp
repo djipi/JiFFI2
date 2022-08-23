@@ -218,6 +218,7 @@ int detect_file_format(void)
 				//ElfMem = (Elf*)ptr;
 				if (((((((Elf32_Ehdr*)ptrload)->e_machine) & 0xFF) == EM_68K) && ((((Elf32_Ehdr*)ptrload)->e_type) == ET_EXEC)) || (!endianess && (((((Elf32_Ehdr*)ptrload)->e_machine) & 0xFF00) == (EM_68K << 8)) && ((((Elf32_Ehdr*)ptrload)->e_type) == (ET_EXEC << 8))))
 				{
+					unsigned char* ptr = NULL;
 					size_t NbrSect;
 					Elf* ElfMem = elf_memory((char*)ptrload, linj);
 					if (!elf_getshdrnum(ElfMem, &NbrSect))
@@ -235,22 +236,42 @@ int detect_file_format(void)
 								PtrGElfShdr = gelf_getshdr(PtrElfScn, &GElfShdr);
 								switch (PtrGElfShdr->sh_type)
 								{
+									// Program data
 								case SHT_PROGBITS:
 									if ((PtrGElfShdr->sh_flags & (SHF_ALLOC | SHF_WRITE | SHF_EXECINSTR)))
 									{
 										if (PtrGElfShdr->sh_addr < loadadr)
 										{
 											loadadr = PtrGElfShdr->sh_addr;
+											if (ptr < (ptrload + PtrGElfShdr->sh_offset))
+											{
+												ptr = (ptrload + PtrGElfShdr->sh_offset);
+											}
 										}
 									}
+									else
+									{
+										linj -= PtrGElfShdr->sh_size;
+									}
 									break;
+									// Symbol table
+								case SHT_SYMTAB:
+									// String table
+								case SHT_STRTAB:
+									// Section header table entry unused
+								case SHT_NULL:
+									// Program space with no data (bss)
+								case SHT_NOBITS:
+									// reduce the size with the section's size
 								default:
+									linj -= PtrGElfShdr->sh_size;
 									break;
 								}
 							}
 							// get run address
 							//runadr = !endianess ? (uint32_t)PtrGElfEhdr->e_entry : ((((uint32_t)PtrGElfEhdr->e_entry & 0xff000000) >> 24) | (((uint32_t)PtrGElfEhdr->e_entry & 0x00ff0000) >> 8) | (((uint32_t)PtrGElfEhdr->e_entry & 0x0000ff00) << 8) | (((uint32_t)PtrGElfEhdr->e_entry & 0x000000ff) << 24));
 							runadr = (uint32_t)PtrGElfEhdr->e_entry;
+							memcpy(imageadr, ptr, linj);
 							detected_format = format_ELF;
 						}
 					}

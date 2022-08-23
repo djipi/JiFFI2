@@ -11,6 +11,10 @@ Supported formats of the Atari Jaguar.
 - ROM
 
 
+Version 1.0.1 - 08-23-2022
+- Fix crash with ELF format crc32 check.
+
+
 Version 1.0.0 - 02-28-2021
 - Work based on JiFFI v1.43 which is based on the v1.42, written in GFA Basic, released by ggn.
 -- Follow the same set of features
