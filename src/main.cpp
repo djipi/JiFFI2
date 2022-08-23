@@ -6,13 +6,13 @@
 using namespace tinyxml2;
 
 // lo_inp names list
-char* lo_inp[] = {
+const char* lo_inp[] = {
     { "no lo_inp found" },
     { "lo_inp found and allow BJL transmission" }
 };
 
 // jcp messages list
-char* JCPMessages[] = {
+const char* JCPMessages[] = {
     { "no jcp found" },
     { "jcp found" },
     { "jcp2 found" }

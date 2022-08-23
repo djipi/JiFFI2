@@ -52,7 +52,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(Qt_INCLUDEPATH_);..\src;%(AdditionalIncludeDirectories);C:\SDK\ELF\libelf-0.8.13\include;C:\SDK\COFF\include;C:\SDK\crc\include;C:\SDK\XML\tinyxml2-8.0.0\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(Qt_INCLUDEPATH_);..\src;%(AdditionalIncludeDirectories);C:\SDK\ELF\libelf-0.8.13\include;C:\SDK\COFF\include;C:\SDK\crc\crc32\include;C:\SDK\XML\tinyxml2-8.0.0\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <AssemblerListingLocation>$(IntDir)asm\</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)obj\</ObjectFileName>
@@ -61,7 +61,7 @@
       <WarningLevel>Level3</WarningLevel>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(Qt_LIBPATH_);%(AdditionalLibraryDirectories);C:\SDK\ELF\libelf-0.8.13\lib;c:\sdk\crc\lib;C:\SDK\XML\tinyxml2-8.0.0\lib\x64-Debug-Lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(Qt_LIBPATH_);%(AdditionalLibraryDirectories);C:\SDK\ELF\libelf-0.8.13\lib;C:\SDK\crc\crc32\lib;C:\SDK\XML\tinyxml2-8.0.0\lib\x64-Debug-Lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>$(Qt_LIBS_);%(AdditionalDependencies);msvcrt.lib;libelf-0.8.13_vs2019_x64d.lib;crc32_vs2019_x64d.lib;tinyxml2.lib</AdditionalDependencies>
       <LinkStatus>
       </LinkStatus>
@@ -77,10 +77,10 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <ObjectFileName>$(IntDir)obj\</ObjectFileName>
-      <AdditionalIncludeDirectories>$(Qt_INCLUDEPATH_);%(AdditionalIncludeDirectories);.\;.\src;C:\SDK\ELF\libelf-0.8.13\include;C:\SDK\COFF\include;C:\SDK\crc\include;C:\SDK\XML\tinyxml2-8.0.0\include;..\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(Qt_INCLUDEPATH_);%(AdditionalIncludeDirectories);.\;.\src;C:\SDK\ELF\libelf-0.8.13\include;C:\SDK\COFF\include;C:\SDK\crc\crc32\include;C:\SDK\XML\tinyxml2-8.0.0\include;..\src</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(Qt_LIBPATH_);%(AdditionalLibraryDirectories);C:\SDK\ELF\libelf-0.8.13\lib;c:\sdk\crc\lib;C:\SDK\XML\tinyxml2-8.0.0\lib\x64-Release-Lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(Qt_LIBPATH_);%(AdditionalLibraryDirectories);C:\SDK\ELF\libelf-0.8.13\lib;C:\SDK\crc\crc32\lib;C:\SDK\XML\tinyxml2-8.0.0\lib\x64-Release-Lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>$(Qt_LIBS_);%(AdditionalDependencies);libelf-0.8.13_vs2019_x64.lib;crc32_vs2019_x64.lib;tinyxml2.lib</AdditionalDependencies>
       <LinkStatus>false</LinkStatus>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>

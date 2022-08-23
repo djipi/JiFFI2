@@ -20,7 +20,7 @@ char* imagefinaladr;
 char* image_orig;
 char* imageadr;
 //char* pad;
-char* TitleName;
+const char* TitleName;
 unsigned int NumTitles;
 int DetectedTitle, CurrentDetectedTitle;
 unsigned int PatchesForCurrentTitle, NumPatches;

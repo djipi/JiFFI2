@@ -8,7 +8,7 @@
 
 
 // Format names
-char* FormatName[] = {
+const char* FormatName[] = {
     {   "None detected - either BJL, ROM or binary" },
     {   "COFF/ABS"  },
     {   "Jaguar Server v3"  },

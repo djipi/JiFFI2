@@ -3,7 +3,7 @@
 extern unsigned char _acromhead2[];
 #define _romhead _acromhead2
 
-char* HeaderROMName[] =
+const char* HeaderROMName[] =
 {
 	".rom",
 	"_headerless.rom",

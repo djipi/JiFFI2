@@ -98,7 +98,7 @@ PatchForm;
 typedef struct PatchData
 {
 	int title;
-	char* caption;
+	const char* caption;
 	int Offset1;
 	int NoBytes1;
 	BYTE Bytes1[63];
@@ -117,7 +117,7 @@ PatchData;
 typedef struct crctype
 {
 	uint32_t crc;
-	char* titlename;
+	const char* titlename;
 	long flags;
 }
 crctype;
@@ -159,7 +159,7 @@ extern char* image_orig;
 extern long offset;
 extern uint32_t crc;
 extern int DetectedTitle, CurrentDetectedTitle;
-extern char* TitleName;
+extern const char* TitleName;
 extern unsigned char _acpad[];
 #define pad _acpad
 extern unsigned char _acpad2[];
