@@ -18,7 +18,7 @@ void removepad(void)
 	char* temp = strstr(image_orig, search_pad);
 	if (temp)
 	{
-		linj = (temp - image_orig);
+		linj = (unsigned int)(temp - image_orig);
 	}
 	else
 	{
@@ -26,7 +26,7 @@ void removepad(void)
 		temp = strstr(image_orig, search_pad2);
 		if (temp)
 		{
-			linj = (temp - image_orig);
+			linj = (unsigned int)(temp - image_orig);
 		}
 	}
 }
@@ -242,7 +242,7 @@ int detect_file_format(void)
 									{
 										if (PtrGElfShdr->sh_addr < loadadr)
 										{
-											loadadr = PtrGElfShdr->sh_addr;
+											loadadr = (unsigned int)(PtrGElfShdr->sh_addr);
 											if (ptr < (ptrload + PtrGElfShdr->sh_offset))
 											{
 												ptr = (ptrload + PtrGElfShdr->sh_offset);
@@ -251,7 +251,7 @@ int detect_file_format(void)
 									}
 									else
 									{
-										linj -= PtrGElfShdr->sh_size;
+										linj -= (unsigned int)(PtrGElfShdr->sh_size);
 									}
 									break;
 									// Symbol table
@@ -264,7 +264,7 @@ int detect_file_format(void)
 								case SHT_NOBITS:
 									// reduce the size with the section's size
 								default:
-									linj -= PtrGElfShdr->sh_size;
+									linj -= (unsigned int)(PtrGElfShdr->sh_size);
 									break;
 								}
 							}
