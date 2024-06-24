@@ -1,7 +1,6 @@
 Backup/
 Samples/
-vs2019/.vs/
+.vs/
 vs2019/Screenshots/
-vs2019/x64/
-vs2019/*.user
-
+x64/
+*.user
