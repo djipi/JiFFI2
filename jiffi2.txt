@@ -11,9 +11,13 @@ Supported formats of the Atari Jaguar.
 - ROM
 
 
+Version 1.0.2 - 06-23-2024
+- Added a Visual Studio 2022 project
+- Removed hardcoded libraries version in the about's UI
+- Display the libraries' names used in the application
+
 Version 1.0.1 - 08-23-2022
 - Fix crash with ELF format crc32 check.
-
 
 Version 1.0.0 - 02-28-2021
 - Work based on JiFFI v1.43 which is based on the v1.42, written in GFA Basic, released by ggn.
@@ -33,10 +37,10 @@ Version 1.0.0 - 02-28-2021
 
 Technical
 ---------
-Visual Studio 2019
+Visual Studio 2022
 Windows 64 bits
 Qt5
 CRC32 function
-libelf 0.18.3
-tinyxml2 8.0.0
+libelf
+tinyxml2
 coff format header
