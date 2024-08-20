@@ -60,7 +60,7 @@
       <ObjectFileName>$(IntDir)obj\</ObjectFileName>
       <CompileAsManaged>false</CompileAsManaged>
       <OmitDefaultLibName>false</OmitDefaultLibName>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(Qt_LIBPATH_);%(AdditionalLibraryDirectories);C:\SDK\ELF\libelf-0.8.13\lib;C:\SDK\crc\crc32\lib;C:\SDK\XML\tinyxml2-10.0.0\lib</AdditionalLibraryDirectories>
