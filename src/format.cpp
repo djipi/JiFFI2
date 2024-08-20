@@ -227,11 +227,14 @@ int detect_file_format(void)
 						Elf_Scn* PtrElfScn;
 						if (((PtrGElfEhdr = gelf_getehdr(ElfMem, &ElfEhdr)) != NULL) && ((PtrElfScn = elf_getscn(ElfMem, 0)) != NULL))
 						{
+							// init offsets low/high
+							size_t offsetlow, offsethigh = 0;
 							// get load address
 							loadadr = -1;
 							// loop on the ELF information to get useful parts and loading address
 							GElf_Shdr GElfShdr, * PtrGElfShdr;
-							for (;(PtrElfScn != NULL); PtrElfScn = elf_nextscn(ElfMem, PtrElfScn))
+							GElf_Phdr GElfPhdr, * PtrGElfPhdr;
+							for (int index = 0; (PtrElfScn != NULL); PtrElfScn = elf_nextscn(ElfMem, PtrElfScn), index = 0)
 							{
 								PtrGElfShdr = gelf_getshdr(PtrElfScn, &GElfShdr);
 								switch (PtrGElfShdr->sh_type)
@@ -240,19 +243,27 @@ int detect_file_format(void)
 								case SHT_PROGBITS:
 									if ((PtrGElfShdr->sh_flags & (SHF_ALLOC | SHF_WRITE | SHF_EXECINSTR)))
 									{
-										if (PtrGElfShdr->sh_addr < loadadr)
+										while ((PtrGElfPhdr = gelf_getphdr(ElfMem, index++, &GElfPhdr)) ? (PtrGElfPhdr->p_offset != PtrGElfShdr->sh_offset) : false);
+										if (PtrGElfPhdr)
 										{
-											loadadr = (unsigned int)(PtrGElfShdr->sh_addr);
-											if (ptr < (ptrload + PtrGElfShdr->sh_offset))
+											if (PtrGElfPhdr->p_paddr < loadadr)
 											{
-												ptr = (ptrload + PtrGElfShdr->sh_offset);
+												loadadr = (unsigned int)(PtrGElfPhdr->p_paddr);
+												if (ptr < (ptrload + PtrGElfPhdr->p_offset))
+												{
+													ptr = (ptrload + (offsetlow = PtrGElfPhdr->p_offset));
+												}
+											}
+											if (PtrGElfPhdr->p_offset >= offsethigh)
+											{
+												offsethigh = PtrGElfPhdr->p_offset + PtrGElfShdr->sh_size;
 											}
 										}
 									}
-									else
-									{
-										linj -= (unsigned int)(PtrGElfShdr->sh_size);
-									}
+									//else
+									//{
+									//	linj -= (unsigned int)(PtrGElfShdr->sh_size);
+									//}
 									break;
 									// Symbol table
 								case SHT_SYMTAB:
@@ -264,14 +275,16 @@ int detect_file_format(void)
 								case SHT_NOBITS:
 									// reduce the size with the section's size
 								default:
-									linj -= (unsigned int)(PtrGElfShdr->sh_size);
+									//linj -= (unsigned int)(PtrGElfShdr->sh_size);
 									break;
 								}
 							}
 							// get run address
 							//runadr = !endianess ? (uint32_t)PtrGElfEhdr->e_entry : ((((uint32_t)PtrGElfEhdr->e_entry & 0xff000000) >> 24) | (((uint32_t)PtrGElfEhdr->e_entry & 0x00ff0000) >> 8) | (((uint32_t)PtrGElfEhdr->e_entry & 0x0000ff00) << 8) | (((uint32_t)PtrGElfEhdr->e_entry & 0x000000ff) << 24));
 							runadr = (uint32_t)PtrGElfEhdr->e_entry;
-							memcpy(imageadr, ptr, linj);
+							// copy the used code + data
+							memcpy(imageadr, ptr, (linj = offsethigh-offsetlow));
+							// ELF format considered correct
 							detected_format = format_ELF;
 						}
 					}
