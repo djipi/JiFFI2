@@ -11,6 +11,9 @@ Supported formats of the Atari Jaguar.
 - ROM
 
 
+Version 1.0.3 - 08-20-2024
+- Fix potential crash with a VMA & LMA different address in the binary ELF
+
 Version 1.0.2 - 06-23-2024
 - Added a Visual Studio 2022 project
 - Removed hardcoded libraries version in the about's UI
