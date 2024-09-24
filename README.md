@@ -10,7 +10,7 @@ Windows 64 bits.
 COFF/ABS<br>
 BIN/BJL<br>
 Jaguar Server (v2 and v3)<br>
-ROM<br>
+J64/ROM<br>
 ELF
 
 ## Features
