@@ -123,7 +123,7 @@
     <None Include="..\README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\jiffi2.txt" />
+    <Text Include="..\changelog.txt" />
     <Text Include="..\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
