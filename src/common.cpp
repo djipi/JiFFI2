@@ -74,7 +74,7 @@ void HandleWriteErrorMsg(char* PtrFilename)
 		// setup the message box
 		QMessageBox msgBox;
 		QString msg;
-		msg.sprintf("File %s cannot be written", PtrFilename);
+		msg.asprintf("File %s cannot be written", PtrFilename);
 		msgBox.setText(msg);
 		msgBox.exec();
 	}
@@ -95,7 +95,7 @@ int HandleOverwriteMsg(char* PtrFilename)
 		// setup the message box
 		QMessageBox msgBox;
 		QString msg;
-		msg.sprintf("File %s already exists", PtrFilename);
+		msg.asprintf("File %s already exists", PtrFilename);
 		msgBox.setText(msg);
 		msgBox.setInformativeText("Do you want to overwrite it?");
 		msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
