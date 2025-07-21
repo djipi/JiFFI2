@@ -65,7 +65,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(Qt_LIBPATH_);%(AdditionalLibraryDirectories);$(LIBELFDIR)\lib;$(CRC32DIR)\lib;$(TINYXMLDIR)\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(Qt_LIBS_);%(AdditionalDependencies);msvcrt.lib;libelf-0.8.13_vs2022_x64d.lib;crc32_vs2022_x64d.lib;tinyxml2_vs2022_static_x64d.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(Qt_LIBS_);%(AdditionalDependencies);msvcrtd.lib;libelf-0.8.13_vs2022_x64d.lib;crc32_vs2022_x64d.lib;tinyxml2_vs2022_static_x64d.lib</AdditionalDependencies>
       <LinkStatus>
       </LinkStatus>
       <LinkTimeCodeGeneration>
@@ -192,6 +192,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Text Include="..\CMakeLists.txt">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Text>
     <Text Include="..\jiffi2.txt">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
