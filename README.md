@@ -29,7 +29,7 @@ J64/ROM<br>
 Jaguar Server (v2 and v3)
 
 ## Documentations
-Please refer to the Wiki page.
+Please refer to the [Wiki](https://github.com/djipi/JiFFI2/wiki) page.
 
 ## Projects
 CMake<br>
