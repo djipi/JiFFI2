@@ -3,7 +3,7 @@
 
 //#include <Windows.h>
 #include <stdio.h>
-#include <string>
+#include <string.h>
 #include <stdlib.h>
 #include <stdint.h>
 #include <ctype.h>

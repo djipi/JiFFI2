@@ -374,7 +374,7 @@ void JiFFI2::cmd_create_Click(void)
                 Return
                 EndIf
                 EndIf
-#endif
+#endif			
                 // check valid load and run address depend the detected format
                 if ((detected_format != format_ROMheaderless) && (detected_format != format_ROMheader) && (detected_format == format_undetected) && (opt_BJL.Value = true))
                 {
@@ -600,7 +600,7 @@ void JiFFI2::cmd_uploadBJL_Click(void)
 
         End Sub
 
-#endif
+#endif	
 #if 0
     // check the source file
     if (!inp[0])
@@ -638,12 +638,17 @@ void JiFFI2::cmd_uploadBJL_Click(void)
                 char file[MAX_PATH], buffer[10];
                 sprintf_s(file, "%s%s_load_%06x_run_%06x_jiffi%i.bjl", out, name, loadadr, runadr, chk_JiFFI.Value);
                 printf("\nCreate temporary file %s\n", file);
-                // create the command line
-                QString cmdline = "lo_inp.exe " + QString(chk_8bitupl.Value ? "-8 " : "") + QString(chk_noswitch.Value ? "-n " : "") + (QString("-b ") + QString(!_itoa_s(loadadr, buffer, 16) ? buffer : "ERROR")) + QString(" ") + QString(file);
-                printf("%s\n", cmdline.toUtf8().constData());
+                // create the command arguments
+                QStringList arguments;
+                if (chk_8bitupl.Value) arguments << "-8";
+                if (chk_noswitch.Value) arguments << "-n";
+                arguments << "-b" << QString(!_itoa_s(loadadr, buffer, 16) ? buffer : "ERROR");
+                arguments << QString(file);
+
+                printf("lo_inp.exe %s\n", arguments.join(" ").toUtf8().constData());
                 // execute the command line
                 QProcess* process = new QProcess(this);
-                process->execute(cmdline);
+                process->execute("lo_inp.exe", arguments);
                 // remove the BJL temporry file
                 if (!remove(file))
                 {
@@ -666,7 +671,7 @@ unsigned int JiFFI2::HandleSkunkboardBank(void)
     // flash a ROM file directly (create a new ROM in case there are patches to be applied)
     QMessageBox msgBox;
     QString msg;
-    msg.sprintf("Please note that flashing a ROM will permanently erase your Skunkboard's bank.");
+    msg.asprintf("Please note that flashing a ROM will permanently erase your Skunkboard's bank.");
     msgBox.setText(msg);
     msgBox.setInformativeText("Erase Skunkboard bank?");
     msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
@@ -689,12 +694,15 @@ void JiFFI2::HandleSkunkboardTempROM0(void)
     // create the file name
     sprintf_s(file, "%s%s_jiffi%i.rom", out, name, chk_JiFFI.Value);
     printf("\nCreate temporary file %s\n", file);
-    // create the command line
-    sprintf_s(cmdline, "%s -f %s %s", JCPApp, (chk_uploadbank2.Value ? "-2" : ""), file);
-    printf("%s\n", cmdline);
+    // create the command arguments
+    QStringList arguments;
+    arguments << "-f";
+    if (chk_uploadbank2.Value) arguments << "-2";
+    arguments << QString(file);
+
+    printf("%s %s\n", JCPApp, arguments.join(" ").toUtf8().constData());
     // execute the command line
-    process->execute(cmdline);
-    // remove the COFF temporry file
+    process->execute(QString(JCPApp), arguments);    // remove the COFF temporry file
     if (!remove(file))
     {
         printf("The temporary file has been deleted successfully\n");
@@ -810,7 +818,7 @@ void JiFFI2::cmd_uploadskunk_Click(void)
 
 
         End Sub
-#endif
+#endif	
 #if 0
     // check the source file
     if (!inp[0])
@@ -824,11 +832,12 @@ void JiFFI2::cmd_uploadskunk_Click(void)
         // reset the Skunkboard
         if (chk_resetskunk.Value)
         {
-            // create the command line
-            sprintf_s(cmdline, "%s -r", JCPApp);
-            printf("%s\n", cmdline);
+            // create the command arguments for reset
+            QStringList arguments;
+            arguments << "-r";
+            printf("%s %s\n", JCPApp, arguments.join(" ").toUtf8().constData());
             // execute the command line
-            process->execute(cmdline);
+            process->execute(QString(JCPApp), arguments);
         }
 
         if ((detected_format == format_ROMheader) || (detected_format == format_ROMheaderless) || (detected_format == format_ROMUnivHeader))
@@ -887,10 +896,11 @@ void JiFFI2::cmd_uploadskunk_Click(void)
                 sprintf_s(file, "%s%s_jiffi%i.coff", out, name, chk_JiFFI.Value);
                 printf("\nCreate temporary file %s\n", file);
                 // create the command line
-                sprintf_s(cmdline, "%s %s", JCPApp, file);
-                printf("%s\n", cmdline);
+                QStringList arguments;
+                arguments << QString(file);
+                printf("%s %s\n", JCPApp, arguments.join(" ").toUtf8().constData());
                 // execute the command line
-                process->execute(cmdline);
+                process->execute(QString(JCPApp), arguments);
                 // remove the COFF temporry file
                 if (!remove(file))
                 {
