@@ -35,11 +35,11 @@ Please refer to the [Wiki](https://github.com/djipi/JiFFI2/wiki) page.
 CMake<br>
 Visual Studio 2022
 ### Requirements
-coff format header<br>
-CRC32 function<br>
-libelf<br>
-Qt5<br>
-tinyxml2
+[coff format header](https://github.com/djipi/JiFFI2/wiki/Librairies#coff)<br>
+[CRC32 function](https://github.com/djipi/JiFFI2/wiki/Librairies#crc32)<br>
+[libelf](https://github.com/djipi/JiFFI2/wiki/Librairies#elf)<br>
+[Qt5](https://github.com/djipi/JiFFI2/wiki/Librairies#qt)<br>
+[tinyxml2](https://github.com/djipi/JiFFI2/wiki/Librairies#xml)
 
 ## Revision
 This version has been converted to C/C++ from JiFFI v1.43 written in GFA Basic.
