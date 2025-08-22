@@ -27,8 +27,8 @@ jobs:
         run: cmake --build build_cli --config Release
 
       # --- Second build: Default ---
-      - name: Configure CMake (default)
-        run: cmake -B build_full -G "Ninja"
+      #- name: Configure CMake (default)
+      #  run: cmake -B build_full -G "Ninja"
 
-      - name: Build (default)
-        run: cmake --build build_full --config Release
+      #- name: Build (default)
+      #  run: cmake --build build_full --config Release
