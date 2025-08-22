@@ -1,5 +1,7 @@
 #include "common.h"
+#if !defined(CLI_ONLY)
 #include <QMessageBox>
+#endif
 
 
 char inp[MAX_PATH], out[MAX_PATH], name[MAX_PATH];
@@ -11,9 +13,8 @@ enumjcp jcp_master;
 char JCPApp[10];
 unsigned int DebugInfoSize;
 long offset;							// 0 when ROM file is headerless, $2000 when file has universal header
-//BOOL songloaded;
-BOOL cli;	// , cli_run;
-uint32_t crc;
+//bool songloaded;
+bool cli_run;
 //char* search = "JiFFI2";
 char* image_patch;
 char* imagefinaladr;
@@ -24,9 +25,6 @@ const char* TitleName;
 unsigned int NumTitles;
 int DetectedTitle, CurrentDetectedTitle;
 unsigned int PatchesForCurrentTitle, NumPatches;
-PatchData Patches[256];
-PatchForm PatchOptions[10];
-crctype titles[256];
 //int __argc;
 //char** __argv;
 chk chk_coff, chk_elf, chk_ROM, chk_BJL, chk_jagr2, chk_jagr3, chk_ROMh, chk_J64;
@@ -37,9 +35,7 @@ chk chk_auto_output_dir;
 chk chk_JiFFI;
 chk cmd_uploadBJL, cmd_uploadskunk;
 chk opt_BJL, opt_ROM;
-BOOL endianess;
-BOOL EditorAddr;
-int NbUseFormat;
+bool endianess;
 
 
 // Initialisations
@@ -68,8 +64,9 @@ void closeJiFFI2(void)
 //
 void HandleWriteErrorMsg(char* PtrFilename)
 {
+#if !defined(CLI_ONLY)
 	// check command line
-	if (!cli)
+	if (!cli_run)
 	{
 		// setup the message box
 		QMessageBox msgBox;
@@ -79,6 +76,7 @@ void HandleWriteErrorMsg(char* PtrFilename)
 		msgBox.exec();
 	}
 	else
+#endif
 	{
 		// print message to command line
 		printf("File %s cannot be written\n", PtrFilename);
@@ -89,8 +87,9 @@ void HandleWriteErrorMsg(char* PtrFilename)
 //
 int HandleOverwriteMsg(char* PtrFilename)
 {
+#if !defined(CLI_ONLY)
 	// check command line
-	if (!cli)
+	if (!cli_run)
 	{
 		// setup the message box
 		QMessageBox msgBox;
@@ -108,6 +107,7 @@ int HandleOverwriteMsg(char* PtrFilename)
 		}
 	}
 	else
+#endif
 	{
 		// print message to command line
 		printf("File %s already exists\n", PtrFilename);

@@ -1,4 +1,3 @@
-
 #pragma once
 
 //#include <Windows.h>
@@ -37,8 +36,6 @@
 // Memory
 #define SWAP32(value)				(((value & 0xff) << 24) | ((value & 0xff00) << 8) | ((value & 0xff0000) >> 8) | ((value & 0xff000000) >> 24))
 
-typedef unsigned int BOOL;
-typedef unsigned char BYTE;
 #define MAX_PATH	256
 
 typedef enum enumjcp
@@ -56,82 +53,13 @@ typedef enum
 }
 enum_jiffiver;
 
-typedef enum
-{
-	format_undetected = 0,
-	format_COFF,
-	format_JAGR3,
-	format_JAGR2,
-	format_JiFFIROM1,
-	format_ULS,
-	format_ROMheader,
-	format_ROMheaderless,
-	format_JiFFIROM2,
-	format_WeirdROM,
-	format_ROMUnivHeader,
-	format_ELF,
-	format_2MB,
-	format_6MB
-}
-enum_format;
-
-typedef enum
-{
-	FF_ROM = 0x01,
-	FF_ALPINE = 0x02,
-	FF_BIOS = 0x04,
-	FF_REQ_DSP = 0x08,
-	FF_REQ_BIOS = 0x10,
-	FF_NON_WORKING = 0x20,
-	FF_BAD_DUMP = 0x40,
-	FF_VERIFIED = 0x80
-}
-enum_FF;
-
-typedef struct PatchForm
-{
-	int index;
-	BOOL selected;
-}
-PatchForm;
-
-typedef struct PatchData
-{
-	int title;
-	const char* caption;
-	int Offset1;
-	int NoBytes1;
-	BYTE Bytes1[63];
-	int Offset2;
-	int NoBytes2;
-	BYTE Bytes2[63];
-	int Offset3;
-	int NoBytes3;
-	BYTE Bytes3[63];
-	int Offset4;
-	int NoBytes4;
-	BYTE Bytes4[63];
-}
-PatchData;
-
-typedef struct crctype
-{
-	uint32_t crc;
-	const char* titlename;
-	long flags;
-}
-crctype;
-
 typedef struct chk
 {
-	BOOL Enabled;
-	BOOL Value;
+	bool Enabled;			// UI checkboxes
+	unsigned int Value;
 }
 chk;
 
-extern PatchData Patches[];
-extern PatchForm PatchOptions[];
-extern crctype titles[];
 extern char* imagefinaladr;
 extern unsigned int NumTitles;
 extern unsigned int NumPatches, PatchesForCurrentTitle;
@@ -145,19 +73,16 @@ extern chk chk_auto_output_dir;
 extern chk chk_JiFFI;
 extern chk cmd_uploadBJL, cmd_uploadskunk;
 extern chk opt_BJL, opt_ROM;
-extern int NbUseFormat;
 extern unsigned int linj;
 extern int detected_format;
 extern enumjcp jcp_master;
 extern char JCPApp[10];
 extern unsigned int DebugInfoSize;
-extern BOOL cli;	// , cli_run;
+extern bool cli_run;
 extern char* imageadr;
-extern BOOL endianess;
-extern BOOL EditorAddr;
+extern bool endianess;
 extern char* image_orig;
 extern long offset;
-extern uint32_t crc;
 extern int DetectedTitle, CurrentDetectedTitle;
 extern const char* TitleName;
 extern unsigned char _acpad[];
@@ -169,4 +94,3 @@ extern void initJiFFI2(void);
 extern void closeJiFFI2(void);
 extern int HandleOverwriteMsg(char* PtrFilename);
 extern void HandleWriteErrorMsg(char* PtrFilename);
-extern int save_file_format(void);

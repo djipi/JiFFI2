@@ -1,8 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug (CLI)|x64">
+      <Configuration>Debug (CLI)</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release (CLI)|x64">
+      <Configuration>Release (CLI)</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Release|x64">
@@ -14,7 +22,9 @@
     <ProjectGuid>{44C753E0-3D17-4CFE-A6DE-1B59D13B55BB}</ProjectGuid>
     <Keyword>QtVS_v303</Keyword>
     <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)'=='Debug (CLI)|x64'">10.0</WindowsTargetPlatformVersion>
     <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)'=='Release (CLI)|x64'">10.0</WindowsTargetPlatformVersion>
     <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -24,7 +34,17 @@
     <UseOfMfc>false</UseOfMfc>
     <UseDebugLibraries>true</UseDebugLibraries>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug (CLI)|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release (CLI)|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
@@ -37,7 +57,13 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug (CLI)|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release (CLI)|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
@@ -48,13 +74,21 @@
     <LinkIncremental>true</LinkIncremental>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug (CLI)|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release (CLI)|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(Qt_INCLUDEPATH_);..\src;%(AdditionalIncludeDirectories);$(LIBELFDIR)\include;C:\SDK\COFF\include;$(CRC32DIR)\include;$(TINYXMLDIR)\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(Qt_INCLUDEPATH_);..\src;%(AdditionalIncludeDirectories);$(LIBELFDIR)\include;$(CRC32DIR)\include;$(TINYXMLDIR)\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <AssemblerListingLocation>$(IntDir)asm\</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)obj\</ObjectFileName>
@@ -72,7 +106,33 @@
       </LinkTimeCodeGeneration>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug (CLI)|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\src;%(AdditionalIncludeDirectories);$(LIBELFDIR)\include;$(CRC32DIR)\include</AdditionalIncludeDirectories>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AssemblerListingLocation>$(IntDir)asm\</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)obj\</ObjectFileName>
+      <CompileAsManaged>false</CompileAsManaged>
+      <OmitDefaultLibName>false</OmitDefaultLibName>
+      <WarningLevel>Level4</WarningLevel>
+      <XMLDocumentationFileName>$(IntDir)docs\</XMLDocumentationFileName>
+      <PreprocessorDefinitions>CLI_ONLY</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(LIBELFDIR)\lib;$(CRC32DIR)\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies);msvcrtd.lib;libelf-0.8.13_vs2022_x64d.lib;crc32_vs2022_x64d.lib</AdditionalDependencies>
+      <LinkStatus>
+      </LinkStatus>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AssemblerListingLocation>$(IntDir)asm\</AssemblerListingLocation>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release (CLI)|x64'">
     <ClCompile>
       <AssemblerListingLocation>$(IntDir)asm\</AssemblerListingLocation>
     </ClCompile>
@@ -80,7 +140,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <ObjectFileName>$(IntDir)obj\</ObjectFileName>
-      <AdditionalIncludeDirectories>$(Qt_INCLUDEPATH_);%(AdditionalIncludeDirectories);.\;.\src;$(LIBELFDIR)\include;C:\SDK\COFF\include;$(CRC32DIR)\include;$(TINYXMLDIR)\include;..\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(Qt_INCLUDEPATH_);%(AdditionalIncludeDirectories);.\;.\src;$(LIBELFDIR)\include;$(CRC32DIR)\include;$(TINYXMLDIR)\include;..\src</AdditionalIncludeDirectories>
       <XMLDocumentationFileName>$(IntDir)docs\</XMLDocumentationFileName>
     </ClCompile>
     <Link>
@@ -90,7 +150,26 @@
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release (CLI)|x64'">
+    <ClCompile>
+      <ObjectFileName>$(IntDir)obj\</ObjectFileName>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);.\;.\src;$(LIBELFDIR)\include;$(CRC32DIR)\include;..\src</AdditionalIncludeDirectories>
+      <XMLDocumentationFileName>$(IntDir)docs\</XMLDocumentationFileName>
+      <PreprocessorDefinitions>CLI_ONLY</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(LIBELFDIR)\lib;$(CRC32DIR)\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies);libelf-0.8.13_vs2022_x64.lib;crc32_vs2022_x64.lib</AdditionalDependencies>
+      <LinkStatus>false</LinkStatus>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+    </Link>
+  </ItemDefinitionGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
+    <QtInstall>Qt 5.12.0</QtInstall>
+    <QtModules>core;gui;widgets</QtModules>
+    <QtBuildConfig>debug</QtBuildConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug (CLI)|x64'" Label="QtSettings">
     <QtInstall>Qt 5.12.0</QtInstall>
     <QtModules>core;gui;widgets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
@@ -100,10 +179,33 @@
     <QtModules>core;gui;widgets</QtModules>
     <QtBuildConfig>release</QtBuildConfig>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release (CLI)|x64'" Label="QtSettings">
+    <QtInstall>Qt 5.12.0</QtInstall>
+    <QtModules>core;gui;widgets</QtModules>
+    <QtBuildConfig>release</QtBuildConfig>
+  </PropertyGroup>
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
     <Import Project="$(QtMsBuild)\qt.props" />
   </ImportGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <UsePrecompiledHeader>Use</UsePrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <QtMoc>
+      <PrependInclude>%(PrependInclude)</PrependInclude>
+    </QtMoc>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug (CLI)|x64'" Label="Configuration">
     <ClCompile>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -139,6 +241,24 @@
       <PrependInclude>%(PrependInclude)</PrependInclude>
     </QtMoc>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release (CLI)|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <Optimization>MaxSpeed</Optimization>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <UsePrecompiledHeader>Use</UsePrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+    </Link>
+    <QtMoc>
+      <PrependInclude>%(PrependInclude)</PrependInclude>
+    </QtMoc>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Resources\elfhead.cpp" />
     <ClCompile Include="..\Resources\elfstringtable.cpp" />
@@ -147,40 +267,71 @@
     <ClCompile Include="..\Resources\pad2.cpp" />
     <ClCompile Include="..\Resources\romhead2.cpp">
       <RuntimeLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary Condition="'$(Configuration)|$(Platform)'=='Debug (CLI)|x64'">MultiThreadedDebug</RuntimeLibrary>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug (CLI)|x64'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\src\about.cpp" />
-    <ClCompile Include="..\src\extraopts.cpp" />
+    <ClCompile Include="..\src\about.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug (CLI)|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release (CLI)|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\src\extraopts.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug (CLI)|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release (CLI)|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\src\rom.cpp" />
-    <QtMoc Include="..\src\about.h" />
+    <QtMoc Include="..\src\about.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug (CLI)|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release (CLI)|x64'">true</ExcludedFromBuild>
+    </QtMoc>
     <ClInclude Include="..\src\bjl.h" />
     <ClInclude Include="..\src\coff.h" />
     <ClInclude Include="..\src\elf.h" />
-    <QtMoc Include="..\src\extraopts.h" />
+    <QtMoc Include="..\src\extraopts.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug (CLI)|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release (CLI)|x64'">true</ExcludedFromBuild>
+    </QtMoc>
     <ClInclude Include="..\src\format.h" />
     <ClInclude Include="..\src\rom.h" />
     <ClInclude Include="..\src\version.h" />
-    <QtRcc Include="..\Resources\JiFFI2.qrc" />
+    <QtRcc Include="..\Resources\JiFFI2.qrc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug (CLI)|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release (CLI)|x64'">true</ExcludedFromBuild>
+    </QtRcc>
     <QtUic Include="..\Resources\about.ui" />
     <QtUic Include="..\Resources\extraopts.ui" />
     <QtUic Include="..\Resources\JiFFI2.ui" />
-    <QtMoc Include="..\src\JiFFI2.h" />
+    <QtMoc Include="..\src\JiFFI2.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug (CLI)|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release (CLI)|x64'">true</ExcludedFromBuild>
+    </QtMoc>
     <ClCompile Include="..\src\bjl.cpp" />
     <ClCompile Include="..\src\coff.cpp" />
     <ClCompile Include="..\src\common.cpp" />
-    <ClCompile Include="..\src\crc.cpp" />
+    <ClCompile Include="..\src\crc.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug (CLI)|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\src\elf.cpp" />
     <ClCompile Include="..\src\format.cpp" />
     <ClCompile Include="..\src\jagr2.cpp" />
     <ClCompile Include="..\src\jagr3.cpp" />
-    <ClCompile Include="..\src\patches.cpp" />
-    <ClCompile Include="..\src\JiFFI2.cpp" />
+    <ClCompile Include="..\src\patches.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug (CLI)|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\src\JiFFI2.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug (CLI)|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release (CLI)|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\src\main.cpp" />
     <ClInclude Include="..\src\common.h" />
-    <ClInclude Include="..\src\crc.h" />
+    <ClInclude Include="..\src\crc.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug (CLI)|x64'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="..\src\jagr2.h" />
     <ClInclude Include="..\src\jagr3.h" />
-    <ClInclude Include="..\src\patches.h" />
+    <ClInclude Include="..\src\patches.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug (CLI)|x64'">false</ExcludedFromBuild>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Resources\JiFFI2.ico" />
@@ -188,17 +339,23 @@
   <ItemGroup>
     <None Include="..\README.md">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug (CLI)|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release (CLI)|x64'">true</ExcludedFromBuild>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\CMakeLists.txt">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug (CLI)|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release (CLI)|x64'">true</ExcludedFromBuild>
     </Text>
     <Text Include="..\changelog.txt">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug (CLI)|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release (CLI)|x64'">true</ExcludedFromBuild>
     </Text>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

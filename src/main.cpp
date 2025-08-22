@@ -1,5 +1,8 @@
-#include "JiFFI2.h"
 #include "version.h"
+#if defined(CLI_ONLY)
+#include "common.h"
+#else
+#include "JiFFI2.h"
 #include <QtWidgets/QApplication>
 #include "tinyxml2.h"
 
@@ -17,24 +20,24 @@ const char* JCPMessages[] = {
     { "jcp found" },
     { "jcp2 found" }
 };
-
-void ConvertCMDLine(void);
+#endif
 
 
 int main(int argc, char *argv[])
 {
     int Error;
-    BOOL Help = false;
+    bool Help = false;
 
     // initialisations
     initJiFFI2();
     initCRC();
-    ConvertCMDLine();
 
     // display application information
     printf("JiFFI2 %i.%i.%i - %s\n", MAJOR, MINOR, PATCH, __DATE__);
     printf("Atari Jaguar file format interchanger, based upon JiFFI v1.42 written in GFA Basic.\n");
+#if !defined(CLI_ONLY)
     printf("JiFFI2 uses tinyxml2 %i.%i.%i, CRC32, and libelf libraries.\n\n", TIXML2_MAJOR_VERSION, TIXML2_MINOR_VERSION, TIXML2_PATCH_VERSION);
+#endif
 
     // check command line
     if (__argc > 1)
@@ -74,7 +77,7 @@ int main(int argc, char *argv[])
                     {
                         if (++p < __argc)
                         {
-                            loadadr = atoi(__argv[p]) * 16;
+                            loadadr = strtol(__argv[p], NULL, 16);
                         }
                     }
                     else
@@ -84,7 +87,7 @@ int main(int argc, char *argv[])
                         {
                             if (++p < __argc)
                             {
-                                runadr = atoi(__argv[p]) * 16;
+                                runadr = strtol(__argv[p], NULL, 16);
                             }
                         }
                         else
@@ -221,20 +224,18 @@ int main(int argc, char *argv[])
             }
             else
             {
-                cli = true;
-                //cli_run = true;                
+                cli_run = true;
                 if (!(Error = detect_file_format()))
                 {
                     Error = save_file_format();
                 }
             }
-            //frm1.Close
         }
         else
         {
             // display the help & options
             printf(
-                "Usage:\n"
+                "\n"
                 "   JiFFI2 -i <filename> [options]\n"
                 "\n"
                 "   Option            Description\n"
@@ -257,12 +258,15 @@ int main(int argc, char *argv[])
                 "   -romh             rom (without header) format output\n"
                 "   -run <address>    run address (hex)\n"
                 "   -treat-as-rom     \n"
+#if !defined(CLI_ONLY)
                 "\n"
                 "Invoking JiFFI2 with no options will cause it to boot up with the GUI."
                 "\n"
+#endif
             );
         }
     }
+#if !defined(CLI_ONLY)
     else
     {
         // check if jcp2.exe exists
@@ -415,77 +419,8 @@ int main(int argc, char *argv[])
             fclose(file);
         }
     }
+#endif
 
     //
     closeJiFFI2();
-}
-
-
-// Command line conversion in separate arguments
-// Originaly used due to one unique command line
-void ConvertCMDLine(void)
-{
-#if 0
-    Local i As Int = 0, j As Int = 0
-        'Print "---" + _DosCmd$ + "---"
-        Local cmd$ = Trim(_DosCmd$) + " "
-        'cmd$ = "i:\svn\reboot\JiFFI\source>JiFFI_1.3.Exe -i c:\Users\gn\Desktop\UFO.BIN -o ""c:\$WINDOWS.~BT\jag\vj2\software"" -load 10000 -run 12000 -rom -all -overwrite -nyan -yaarrr "
-        Local LargeArg As Boolean = False
-        Local a$
-
-        ReDim __argv(__argmax)
-
-        __argv(0) = App.FileName
-        // Anführungszeichen rund um App.FileName entfernen,
-        // falls vorhanden
-        If Left$(__argv(0), 1) = #34
-        __argv(0) = Mid(__argv(0), 2)
-        EndIf
-        If Right$(__argv(0), 1) = #34
-        __argv(0) = Left(__argv(0), Len(__argv(0)) - 1)
-        EndIf
-        '##E#
-
-        If Left$(cmd$, 1) < > """"
-        i = InStr(cmd$, #32)
-        Else
-        i = InStr(cmd$, #34, 2) : LargeArg = True
-        cmd$ = Mid$(cmd$, 2) // Leerzeichen am Anfang abschneiden
-        EndIf
-
-        While i > 0
-        j++
-        If LargeArg
-        // Space und Leerzeichen am Ende abschneiden
-        a$ = Left$(cmd$, i - 2)
-        If Len(a)
-        __argv(j) = Left$(cmd$, i - 2)
-        Else
-        j--
-        EndIf
-        LargeArg = False
-        Else
-        // nur Leerzeichen am Ende abschneiden
-        a$ = Left$(cmd$, i - 1)
-        If Len(a)
-        __argv(j) = Left$(cmd$, i - 1)
-        Else
-        j--
-        EndIf
-        EndIf
-
-        Exit If(i + 1) > Len(cmd$)
-        cmd$ = Mid$(cmd$, i + 1)
-
-        If Left$(cmd$, 1) < > """"
-        i = InStr(cmd$, #32)
-        Else
-        i = InStr(cmd$, #34, 2) : LargeArg = True
-        cmd$ = Mid$(cmd$, 2) // Leerzeichen am Anfang abschneiden
-        EndIf
-        Wend
-
-        // Anzahl der Argumente zurückgeben; ggf. 0
-        __argc = j
-#endif
 }

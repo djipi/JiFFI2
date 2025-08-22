@@ -46,6 +46,8 @@ class JiFFI2 : public QMainWindow
 
     private:
         Ui::JiFFI2Class ui;
+        bool EditorAddr;
+        int NbUseFormat;
 
     private:
         void set_option_click(chk* PtrChk, bool click);

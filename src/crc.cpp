@@ -1,6 +1,10 @@
 #include "common.h"
 
 
+uint32_t crc;
+crctype titles[256];
+
+
 void initCRC(void)
 {
 	int i = 0;

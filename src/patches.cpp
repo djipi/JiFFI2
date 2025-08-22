@@ -1,6 +1,10 @@
 #include "common.h"
 
 
+PatchData Patches[256];
+PatchForm PatchOptions[10];
+
+
 // Apply patches (if available and selected)
 void dopatches(void)
 {

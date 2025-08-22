@@ -851,12 +851,12 @@ void JiFFI2::cmd_uploadskunk_Click(void)
         }
         else
         {
-            if (chk_uploadROM.Value || ((detected_format == format_undetected) && opt_ROM.Value == (BOOL)true))
+            if (chk_uploadROM.Value || ((detected_format == format_undetected) && opt_ROM.Value == true))
             {
                 retVal = HandleSkunkboardBank();
                 if (retVal != QMessageBox::No)
                 {
-                    if ((detected_format != format_ROMheaderless) && (detected_format != format_ROMheader) && ((detected_format == format_undetected) && (opt_BJL.Value == (BOOL)true)))
+                    if ((detected_format != format_ROMheaderless) && (detected_format != format_ROMheader) && ((detected_format == format_undetected) && (opt_BJL.Value == true)))
                     {
                         // check load address
                         if ((loadadr < 0x4000) || (loadadr > 0x1ff000))
