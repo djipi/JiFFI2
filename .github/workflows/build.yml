@@ -9,15 +9,17 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       # Checkout code
       - uses: actions/checkout@v2
 
-      # Install Ninja (CMake generator)
-      - name: Install Ninja
-        run: choco install ninja --yes
+      # Install dependencies: Ninja, pkg-config, CMake
+      - name: Install build tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build pkg-config cmake g++
 
       # --- First build: CLI_ONLY=on ---
       - name: Configure CMake (CLI_ONLY=on)
