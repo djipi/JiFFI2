@@ -1,3 +1,5 @@
+![Build Linux](https://github.com/djipi/JiFFI2/actions/workflows/build.yml/badge.svg)
+
 # JiFFI2
 Atari Jaguar file format interchanger.
 
