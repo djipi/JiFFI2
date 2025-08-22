@@ -19,11 +19,11 @@ jobs:
       - name: Install Ninja
         run: choco install ninja --yes
 
-      # --- First build: CLI_ONLY=OFF ---
-      - name: Configure CMake (CLI_ONLY=off)
-        run: cmake -B build_cli -G "Ninja" -DCLI_ONLY=OFF
+      # --- First build: CLI_ONLY=on ---
+      - name: Configure CMake (CLI_ONLY=on)
+        run: cmake -B build_cli -G "Ninja" -DCLI_ONLY=on
 
-      - name: Build (CLI_ONLY=off)
+      - name: Build (CLI_ONLY=on)
         run: cmake --build build_cli --config Release
 
       # --- Second build: Default ---
