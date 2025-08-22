@@ -148,7 +148,7 @@ int create_coff(void)
 
 	// create output filename
 	char buffer[MAX_PATH];
-	sprintf_s(buffer, "%s%s_jiffi%i.coff", out, name, chk_JiFFI.Value);
+	snprintf(buffer, sizeof(buffer), "%s%s_jiffi%i.coff", out, name, chk_JiFFI.Value);
 
 	// Check if file already exists
 	if (!chk_overwrite.Value && !fopen_s(&file2, buffer, "rb") && file2 && !fclose(file2))

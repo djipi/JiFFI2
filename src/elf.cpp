@@ -63,7 +63,7 @@ int create_elf(void)
 
 	// create output filename based on the header
 	char n[MAX_PATH];
-	sprintf_s(n, "%s%s_jiffi%i.elf", out, name, chk_JiFFI.Value);
+	snprintf(n, sizeof(n), "%s%s_jiffi%i.elf", out, name, chk_JiFFI.Value);
 
 	// Check if file already exists
 	if (!chk_overwrite.Value && !fopen_s(&file3, n, "rb") && file3 && !fclose(file3))

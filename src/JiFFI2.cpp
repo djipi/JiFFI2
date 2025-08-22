@@ -636,7 +636,7 @@ void JiFFI2::cmd_uploadBJL_Click(void)
                 create_bjl();
                 // create the file name
                 char file[MAX_PATH], buffer[10];
-                sprintf_s(file, "%s%s_load_%06x_run_%06x_jiffi%i.bjl", out, name, loadadr, runadr, chk_JiFFI.Value);
+                snprintf(file, sizeof(file), "%s%s_load_%06x_run_%06x_jiffi%i.bjl", out, name, loadadr, runadr, chk_JiFFI.Value);
                 printf("\nCreate temporary file %s\n", file);
                 // create the command arguments
                 QStringList arguments;
@@ -692,7 +692,7 @@ void JiFFI2::HandleSkunkboardTempROM0(void)
     dopatches();
     create_rom(0);
     // create the file name
-    sprintf_s(file, "%s%s_jiffi%i.rom", out, name, chk_JiFFI.Value);
+    snprintf(file, sizeof(file), "%s%s_jiffi%i.rom", out, name, chk_JiFFI.Value);
     printf("\nCreate temporary file %s\n", file);
     // create the command arguments
     QStringList arguments;
@@ -893,7 +893,7 @@ void JiFFI2::cmd_uploadskunk_Click(void)
                 create_coff();
                 // create the file name
                 char file[MAX_PATH];
-                sprintf_s(file, "%s%s_jiffi%i.coff", out, name, chk_JiFFI.Value);
+                snprintf(file, sizeof(file), "%s%s_jiffi%i.coff", out, name, chk_JiFFI.Value);
                 printf("\nCreate temporary file %s\n", file);
                 // create the command line
                 QStringList arguments;

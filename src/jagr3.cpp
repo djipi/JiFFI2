@@ -12,7 +12,7 @@ int create_jagv3(void)
 
 	// create output filename based on the header
 	char n[MAX_PATH];
-	sprintf_s(n, "%s%s_jagserver3_jiffi%i.prg", out, name, chk_JiFFI.Value);
+	snprintf(n, sizeof(n), "%s%s_jagserver3_jiffi%i.prg", out, name, chk_JiFFI.Value);
 
 	// Check if file already exists
 	if (!chk_overwrite.Value && !fopen_s(&file3, n, "rb") && file3 && !fclose(file3))

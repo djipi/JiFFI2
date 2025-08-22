@@ -18,7 +18,7 @@ int create_rom(int header)
 
 	// create output filename based on the header
 	char n[MAX_PATH];
-	sprintf_s(n, "%s%s_jiffi%i%s", out, name, chk_JiFFI.Value, HeaderROMName[header]);
+	snprintf(n, sizeof(n), "%s%s_jiffi%i%s", out, name, chk_JiFFI.Value, HeaderROMName[header]);
 
 	// Check if file already exists
 	if (!chk_overwrite.Value && !fopen_s(&file3, n, "rb") && file3 && !fclose(file3))
@@ -88,7 +88,7 @@ int convert_rom(int _out)
 
 	// create output filename based on the header
 	char n[MAX_PATH];
-	sprintf_s(n, "%s%s%s", out, name, HeaderROMName[_out]);
+	snprintf(n, sizeof(n), "%s%s%s", out, name, HeaderROMName[_out]);
 
 	// Check if file already exists
 	if (!chk_overwrite.Value && !fopen_s(&file3, n, "rb") && file3 && !fclose(file3))
