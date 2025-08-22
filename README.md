@@ -36,7 +36,6 @@ Please refer to the [Wiki](https://github.com/djipi/JiFFI2/wiki) page.
 CMake<br>
 Visual Studio 2022
 ### Requirements
-[CRC32](https://github.com/djipi/JiFFI2/wiki/Librairies#crc32)<br>
 [libelf](https://github.com/djipi/JiFFI2/wiki/Librairies#elf)
 ### Additional requirements specific to GUI
 [Qt5](https://github.com/djipi/JiFFI2/wiki/Librairies#qt)<br>

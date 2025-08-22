@@ -1,7 +1,6 @@
 #include "common.h"
 #include "libelf/libelf.h"
 #include "libelf/gelf.h"
-#include "crc32.h"
 
 
 // Check ROM padding if found
@@ -565,7 +564,7 @@ int detect_file_format(void)
 			{
 				//ed_load.Enabled = ed_run.Enabled = opt_BJL.Enabled = opt_ROM.Enabled = false;
 				// Try to detect tile from CRC32
-				crc = crc32(imageadr, linj);
+				crc = calculCRC(imageadr, linj);
 				for (TitleName = NULL, temp = 0, DetectedTitle = -1; (temp < NumTitles) && !TitleName; temp++)
 				{
 					if (crc == titles[temp].crc)

@@ -284,3 +284,21 @@ void initCRC(void)
 	NumTitles = i;
 	NumPatches = j;
 }
+
+
+uint32_t calculCRC(const char* s, unsigned int len)
+{
+	uint32_t crc = 0xFFFFFFFF;
+
+	for (unsigned int i = 0; i < len; i++) {
+		char ch = s[i];
+		for (unsigned int j = 0; j < 8; j++) {
+			uint32_t b = (ch ^ crc) & 1;
+			crc >>= 1;
+			if (b) crc = crc ^ 0xEDB88320;
+			ch >>= 1;
+		}
+	}
+
+	return ~crc;
+}

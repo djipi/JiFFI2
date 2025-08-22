@@ -88,7 +88,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(Qt_INCLUDEPATH_);..\src;%(AdditionalIncludeDirectories);$(LIBELFDIR)\include;$(CRC32DIR)\include;$(TINYXMLDIR)\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(Qt_INCLUDEPATH_);..\src;%(AdditionalIncludeDirectories);$(LIBELFDIR)\include;$(TINYXMLDIR)\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <AssemblerListingLocation>$(IntDir)asm\</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)obj\</ObjectFileName>
@@ -98,8 +98,8 @@
       <XMLDocumentationFileName>$(IntDir)docs\</XMLDocumentationFileName>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(Qt_LIBPATH_);%(AdditionalLibraryDirectories);$(LIBELFDIR)\lib;$(CRC32DIR)\lib;$(TINYXMLDIR)\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(Qt_LIBS_);%(AdditionalDependencies);msvcrtd.lib;libelf-0.8.13_vs2022_x64d.lib;crc32_vs2022_x64d.lib;tinyxml2_vs2022_static_x64d.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(Qt_LIBPATH_);%(AdditionalLibraryDirectories);$(LIBELFDIR)\lib;$(TINYXMLDIR)\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(Qt_LIBS_);%(AdditionalDependencies);msvcrtd.lib;libelf-0.8.13_vs2022_x64d.lib;tinyxml2_vs2022_static_x64d.lib</AdditionalDependencies>
       <LinkStatus>
       </LinkStatus>
       <LinkTimeCodeGeneration>
@@ -108,7 +108,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug (CLI)|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\src;%(AdditionalIncludeDirectories);$(LIBELFDIR)\include;$(CRC32DIR)\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\src;%(AdditionalIncludeDirectories);$(LIBELFDIR)\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <AssemblerListingLocation>$(IntDir)asm\</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)obj\</ObjectFileName>
@@ -119,8 +119,8 @@
       <PreprocessorDefinitions>CLI_ONLY</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(LIBELFDIR)\lib;$(CRC32DIR)\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>%(AdditionalDependencies);msvcrtd.lib;libelf-0.8.13_vs2022_x64d.lib;crc32_vs2022_x64d.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(LIBELFDIR)\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies);msvcrtd.lib;libelf-0.8.13_vs2022_x64d.lib</AdditionalDependencies>
       <LinkStatus>
       </LinkStatus>
       <LinkTimeCodeGeneration>
@@ -140,12 +140,12 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <ObjectFileName>$(IntDir)obj\</ObjectFileName>
-      <AdditionalIncludeDirectories>$(Qt_INCLUDEPATH_);%(AdditionalIncludeDirectories);.\;.\src;$(LIBELFDIR)\include;$(CRC32DIR)\include;$(TINYXMLDIR)\include;..\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(Qt_INCLUDEPATH_);%(AdditionalIncludeDirectories);.\;.\src;$(LIBELFDIR)\include;$(TINYXMLDIR)\include;..\src</AdditionalIncludeDirectories>
       <XMLDocumentationFileName>$(IntDir)docs\</XMLDocumentationFileName>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(Qt_LIBPATH_);%(AdditionalLibraryDirectories);$(LIBELFDIR)\lib;$(CRC32DIR)\lib;$(TINYXMLDIR)\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(Qt_LIBS_);%(AdditionalDependencies);libelf-0.8.13_vs2022_x64.lib;crc32_vs2022_x64.lib;tinyxml2_vs2022_static_x64.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(Qt_LIBPATH_);%(AdditionalLibraryDirectories);$(LIBELFDIR)\lib;$(TINYXMLDIR)\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(Qt_LIBS_);%(AdditionalDependencies);libelf-0.8.13_vs2022_x64.lib;tinyxml2_vs2022_static_x64.lib</AdditionalDependencies>
       <LinkStatus>false</LinkStatus>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
@@ -153,13 +153,13 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release (CLI)|x64'">
     <ClCompile>
       <ObjectFileName>$(IntDir)obj\</ObjectFileName>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);.\;.\src;$(LIBELFDIR)\include;$(CRC32DIR)\include;..\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);.\;.\src;$(LIBELFDIR)\include;..\src</AdditionalIncludeDirectories>
       <XMLDocumentationFileName>$(IntDir)docs\</XMLDocumentationFileName>
       <PreprocessorDefinitions>CLI_ONLY</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(LIBELFDIR)\lib;$(CRC32DIR)\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>%(AdditionalDependencies);libelf-0.8.13_vs2022_x64.lib;crc32_vs2022_x64.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(LIBELFDIR)\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies);libelf-0.8.13_vs2022_x64.lib</AdditionalDependencies>
       <LinkStatus>false</LinkStatus>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>

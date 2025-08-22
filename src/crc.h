@@ -27,3 +27,4 @@ extern uint32_t crc;
 extern crctype titles[];
 
 extern void initCRC(void);
+uint32_t calculCRC(const char* s, unsigned int len);

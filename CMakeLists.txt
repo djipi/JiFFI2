@@ -27,36 +27,6 @@ message(STATUS "C++ Standard: ${CMAKE_CXX_STANDARD}")
 set(LOCAL_INCLUDE_HINT "/usr/local/include")
 set(LOCAL_LIB_HINT "/usr/local/lib")
 
-# libcrc32.a (static library manually installed)
-find_path(LIBCRC32_LIB_DIR 
-    NAMES libcrc32.a
-    PATHS ${LOCAL_LIB_HINT}
-    DOC "Path to libcrc32.a library file"
-)
-if(LIBCRC32_LIB_DIR)
-    message(STATUS "Found libcrc32.a in: ${LIBCRC32_LIB_DIR}")
-else()
-    message(FATAL_ERROR "libcrc32.a not found! Please check installation.")
-endif()
-
-find_path(LIBCRC32_INCLUDE_DIR 
-    NAMES crc32.h
-    PATHS ${LOCAL_INCLUDE_HINT}
-    DOC "Path to crc32.h header file"
-)
-if(LIBCRC32_INCLUDE_DIR)
-    message(STATUS "Found crc32.h in: ${LIBCRC32_INCLUDE_DIR}")
-else()
-    message(FATAL_ERROR "crc32.h not found! Please check installation.")
-endif()
-
-add_library(libcrc32 STATIC IMPORTED GLOBAL)
-set_target_properties(libcrc32 PROPERTIES
-    IMPORTED_LOCATION "${LIBCRC32_LIB_DIR}/libcrc32.a"
-    INTERFACE_INCLUDE_DIRECTORIES "${LIBCRC32_INCLUDE_DIR}"
-)
-message(STATUS "Created imported target for libcrc32")
-
 # Qt5 (only if not CLI_ONLY)
 if(NOT CLI_ONLY)
     set(CMAKE_AUTOMOC OFF)
@@ -206,7 +176,6 @@ target_include_directories(JiFFI2 PRIVATE ${INCLUDE_DIRS})
 # Link libraries
 set(LINK_LIBS
     ${LIBELF_LINK_LIBRARIES}
-    libcrc32
 )
 
 if(NOT CLI_ONLY)

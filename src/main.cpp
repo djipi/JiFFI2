@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
     printf("JiFFI2 %i.%i.%i - %s\n", MAJOR, MINOR, PATCH, __DATE__);
     printf("Atari Jaguar file format interchanger, based upon JiFFI v1.42 written in GFA Basic.\n");
 #if !defined(CLI_ONLY)
-    printf("JiFFI2 uses tinyxml2 %i.%i.%i, CRC32, and libelf libraries.\n\n", TIXML2_MAJOR_VERSION, TIXML2_MINOR_VERSION, TIXML2_PATCH_VERSION);
+    printf("JiFFI2 uses tinyxml2 %i.%i.%i, and libelf libraries.\n\n", TIXML2_MAJOR_VERSION, TIXML2_MINOR_VERSION, TIXML2_PATCH_VERSION);
 #endif
 
     // check command line

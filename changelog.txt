@@ -3,10 +3,11 @@ JiFFI2
 File format interchanger for the Atari Jaguar.
 
 
-Version 1.0.5 - 08-21-2025
+Version 1.0.5 - 08-22-2025
 - Added CLI_ONLY define to compile only the command line interface
 - Removed the need of libcoff.h
 - Fix the size calculation in the ELF format reader
+- Removed the need of crc32 library
 
 Version 1.0.4 - 07-21-2025
 - Fix for gcc compilation
