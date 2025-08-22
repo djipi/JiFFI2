@@ -15,11 +15,10 @@ jobs:
       # Checkout code
       - uses: actions/checkout@v2
 
-      # Install dependencies: Ninja, pkg-config, CMake
-      - name: Install build tools
+      - name: Install build dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y ninja-build pkg-config cmake g++
+          sudo apt-get install -y ninja-build pkg-config cmake g++ libelf-dev
 
       # --- First build: CLI_ONLY=on ---
       - name: Configure CMake (CLI_ONLY=on)
