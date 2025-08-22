@@ -4,40 +4,40 @@
 
 // File header structure for COFF format - 20 bytes
 struct COFF_filehdr {
-	char f_magic[2];		// magic number
-	char f_nscns[2];		// number of sections
-	char f_timdat[4];		// time & date stamp
-	char f_symptr[4];		// file pointer to symtab
-	char f_nsyms[4];		// number of symtab entries
-	char f_opthdr[2];		// sizeof(optional hdr)
-	char f_flags[2];		// flags
+	char f_magic[2];	// magic number
+	char f_nscns[2];	// number of sections
+	char f_timdat[4];	// time & date stamp
+	char f_symptr[4];	// file pointer to symtab
+	char f_nsyms[4];	// number of symtab entries
+	char f_opthdr[2];	// sizeof(optional hdr)
+	char f_flags[2];	// flags
 };
 
 // Optional header structure for COFF format - 28 bytes - Required for executable
 struct COFF_opthdr
 {
-	char magic[2];			// type of file
-	char vstamp[2];			// version stamp
-	char tsize[4];			// text size in bytes, padded to FW bdry
-	char dsize[4];			// initialized data size
-	char bsize[4];			// uninitialized data size
-	char entry[4];			// entry point.
-	char text_start[4];		// base of text used for this file
-	char data_start[4];		// base of data used for this file
+	char magic[2];					// type of file
+	char vstamp[2];					// version stamp
+	char tsize[4];					// text size in bytes, padded to FW bdry
+	char dsize[4];					// initialized data size
+	char bsize[4];					// uninitialized data size
+	char entry[4];					// entry point.
+	unsigned char text_start[4];	// base of text used for this file
+	char data_start[4];				// base of data used for this file
 };
 
 // Section header structure for COFF format - 40 bytes - One for each section
 struct COFF_scnhdr {
-	char s_name[8];			// section name
-	char s_paddr[4];		// physical address, aliased s_nlib
-	char s_vaddr[4];		// virtual address
-	char s_size[4];			// section size
-	char s_scnptr[4];		// file ptr to raw data for section
-	char s_relptr[4];		// file ptr to relocation
-	char s_lnnoptr[4];		// file ptr to line numbers
-	char s_nreloc[2];		// number of relocation entries
-	char s_nlnno[2];		// number of line number entries
-	char s_flags[4];		// flags
+	char s_name[8];				// section name
+	char s_paddr[4];			// physical address, aliased s_nlib
+	char s_vaddr[4];			// virtual address
+	char s_size[4];				// section size
+	unsigned char s_scnptr[4];	// file ptr to raw data for section
+	char s_relptr[4];			// file ptr to relocation
+	char s_lnnoptr[4];			// file ptr to line numbers
+	char s_nreloc[2];			// number of relocation entries
+	char s_nlnno[2];			// number of line number entries
+	char s_flags[4];			// flags
 };
 
 #define COFF_STYP_TEXT	0x20
