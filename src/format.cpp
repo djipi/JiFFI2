@@ -182,12 +182,6 @@ int detect_file_format(void)
 	int Error = FILE_ERROR_SUCCESS;
 	FILE* File;
 
-	//if (!cli_run)
-	//{
-	//	ed_load = ""
-	//	ed_run = ""
-	//}
-
 	// check valid file
 	if (!fopen_s(&File, inp, "rb") && File)
 	{
@@ -256,7 +250,7 @@ int detect_file_format(void)
 											}
 											if (PtrGElfPhdr->p_offset >= offsethigh)
 											{
-												offsethigh = PtrGElfPhdr->p_offset + PtrGElfShdr->sh_size;
+												offsethigh = PtrGElfPhdr->p_offset + PtrGElfPhdr->p_filesz;
 											}
 										}
 									}
