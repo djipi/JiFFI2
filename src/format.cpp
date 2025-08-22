@@ -1,6 +1,6 @@
 #include "common.h"
-#include "libelf/libelf.h"
-#include "libelf/gelf.h"
+#include "libelf.h"
+#include "gelf.h"
 
 
 // Check ROM padding if found

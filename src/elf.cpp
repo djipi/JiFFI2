@@ -1,6 +1,6 @@
 #include "common.h"
-#include "libelf/libelf.h"
-#include "libelf/gelf.h"
+#include "libelf.h"
+#include "gelf.h"
 
 extern unsigned char _acelfhead[];
 #define _elfhead _acelfhead
