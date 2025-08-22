@@ -16,6 +16,10 @@
 #include "jagr3.h"
 #include "rom.h"
 
+#ifndef _WIN32
+#define fopen_s(pFile, filename, mode) (*pFile = fopen(filename, mode), *pFile ? 0 : errno)
+#endif
+
 // Arguments
 #define __argmax 50
 // Logs
