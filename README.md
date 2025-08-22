@@ -18,7 +18,7 @@ lo_inp executable detection.<br>
 Configuration file in XML format.
 
 ## Platforms
-Linux<br>
+<del>Linux<br></del>
 MSYS2/MinGW<br>
 Windows 10 64 bits
 
