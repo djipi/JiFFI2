@@ -99,7 +99,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(Qt_LIBPATH_);%(AdditionalLibraryDirectories);$(LIBELFDIR)\lib;$(TINYXMLDIR)\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(Qt_LIBS_);%(AdditionalDependencies);msvcrtd.lib;libelf-0.8.13_vs2022_x64d.lib;tinyxml2_vs2022_static_x64d.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(Qt_LIBS_);%(AdditionalDependencies);msvcrtd.lib;libelfd.lib;tinyxml2d.lib</AdditionalDependencies>
       <LinkStatus>
       </LinkStatus>
       <LinkTimeCodeGeneration>
@@ -120,7 +120,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(LIBELFDIR)\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>%(AdditionalDependencies);msvcrtd.lib;libelf-0.8.13_vs2022_x64d.lib</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies);msvcrtd.lib;libelfd.lib</AdditionalDependencies>
       <LinkStatus>
       </LinkStatus>
       <LinkTimeCodeGeneration>
@@ -145,7 +145,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(Qt_LIBPATH_);%(AdditionalLibraryDirectories);$(LIBELFDIR)\lib;$(TINYXMLDIR)\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(Qt_LIBS_);%(AdditionalDependencies);libelf-0.8.13_vs2022_x64.lib;tinyxml2_vs2022_static_x64.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(Qt_LIBS_);%(AdditionalDependencies);libelf.lib;tinyxml2.lib</AdditionalDependencies>
       <LinkStatus>false</LinkStatus>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
@@ -159,7 +159,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(LIBELFDIR)\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>%(AdditionalDependencies);libelf-0.8.13_vs2022_x64.lib</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies);libelf.lib</AdditionalDependencies>
       <LinkStatus>false</LinkStatus>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
@@ -280,6 +280,9 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release (CLI)|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\src\rom.cpp" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="resource1.h" />
+    <ClInclude Include="resource2.h" />
     <QtMoc Include="..\src\about.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug (CLI)|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release (CLI)|x64'">true</ExcludedFromBuild>
@@ -334,9 +337,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\Resources\JiFFI2.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\README.md">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug (CLI)|x64'">true</ExcludedFromBuild>
@@ -357,6 +357,15 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release (CLI)|x64'">true</ExcludedFromBuild>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="JiFFI2.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Resources\JiFFI2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include=".manifest" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

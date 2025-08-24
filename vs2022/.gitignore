@@ -1,0 +1,6 @@
+.vs/
+x64/
+*.user
+resource1.h
+resource2.h
+resource.h
