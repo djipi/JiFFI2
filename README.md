@@ -1,4 +1,4 @@
-![Build Linux](https://github.com/djipi/JiFFI2/actions/workflows/build.yml/badge.svg)
+![Ubuntu Build](https://github.com/djipi/JiFFI2/actions/workflows/build.yml/badge.svg?label=Ubuntu) ![Ubuntu](https://img.shields.io/badge/Ubuntu-22.04-E95420?logo=ubuntu&logoColor=white)
 
 # JiFFI2
 Atari Jaguar file format interchanger.
