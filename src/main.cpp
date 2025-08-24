@@ -3,8 +3,8 @@
 #include "common.h"
 #else
 #include "JiFFI2.h"
-#include <QtWidgets/QApplication>
 #include "tinyxml2.h"
+#include <QtWidgets/QApplication>
 
 using namespace tinyxml2;
 
