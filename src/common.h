@@ -17,7 +17,7 @@
 #include "rom.h"
 
 #ifndef _WIN32
-#define fopen_s(pFile, filename, mode) (*pFile = fopen(filename, mode), *pFile ? 0 : errno)
+#define fopen_s(pFile, filename, mode) (*pFile = fopen(filename, mode), *pFile ? 0 : 1)
 #endif
 
 // Arguments
