@@ -8,6 +8,9 @@ Version 1.0.5 - 08-22-2025
 - Removed the need of libcoff.h
 - Fix the size calculation in the ELF format reader
 - Removed the need of crc32 library
+- Fix missing icon in the Windows executable
+- Added version information in the Windows executable
+- Set Windows's high DPI scalling override to system
 
 Version 1.0.4 - 07-21-2025
 - Fix for gcc compilation
