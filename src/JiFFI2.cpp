@@ -1,10 +1,6 @@
 #include "JiFFI2.h"
-#include "about.h"
-#include "extraopts.h"
+#include "version.h"
 #include "qprocess.h"
-#include "ui_JiFFI2.h"
-#include "ui_about.h"
-#include "ui_extraopts.h"
 
 
 // Format names
@@ -25,23 +21,17 @@ const char* FormatName[] = {
     {   "6MB limit - either ROM or binary" }
 };
 
-about* JiFFI2_About;
-extraopts* JiFFI2_ExtraOpts;
-Ui_extraopts ui_extraopts;
 
-
-JiFFI2::JiFFI2(QWidget* parent)
-    : QMainWindow(parent)
+JiFFI2::JiFFI2(QWidget* parent) : QMainWindow(parent)
 {
     // prepare the extra option window
     JiFFI2_ExtraOpts = new extraopts(this);
     ui_extraopts.setupUi(JiFFI2_ExtraOpts);
     // prepare the about window
-    Ui_about ui_about;
     JiFFI2_About = new about(this);
-    ui_about.setupUi(JiFFI2_About);
     // display the main UI
     ui.setupUi(this);
+    this->setWindowTitle(windowTitle() + " v" + VERSION_STRING);
     RefreshUI();
     // connect the signals for the main menu selections
     QObject::connect(ui.action_About, SIGNAL(triggered()), this, SLOT(cmd_about_Click()));

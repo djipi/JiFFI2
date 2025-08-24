@@ -1,6 +1,8 @@
 #pragma once
 
 #include "common.h"
+#include "about.h"
+#include "extraopts.h"
 #include <QtWidgets/QMainWindow>
 #include <QFileDialog>
 #include <QMessageBox>
@@ -48,6 +50,9 @@ class JiFFI2 : public QMainWindow
         Ui::JiFFI2Class ui;
         bool EditorAddr;
         int NbUseFormat;
+        about* JiFFI2_About;
+        extraopts* JiFFI2_ExtraOpts;
+        Ui_extraopts ui_extraopts;
 
     private:
         void set_option_click(chk* PtrChk, bool click);

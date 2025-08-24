@@ -1,10 +1,12 @@
 #include "extraopts.h"
 #include "common.h"
 
-extraopts::extraopts(QWidget* parent)
-	: QDialog(parent)
+extraopts::extraopts(QWidget* parent) : QDialog(parent)
+, ui(new Ui::extraopts)
 //Status(0)
 {
+	//ui->setupUi(this);
+
 	//NbExtraOpts = Status = 0;
 
 	//parent->objectName();
@@ -48,4 +50,5 @@ extraopts::extraopts(QWidget* parent)
 
 extraopts::~extraopts()
 {
+	delete ui;
 }
